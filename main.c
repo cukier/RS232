@@ -19,7 +19,8 @@
 
 int main() {
 	int i, n, cport_nr = 0, /* /dev/ttyS0 (COM1 on windows) */
-	bdrate = 9600; /* 9600 baud */
+	bdrate = 1200; /* 9600 baud */
+	short ctrl = 1;
 
 	unsigned char buf[4096];
 
@@ -30,6 +31,11 @@ int main() {
 	}
 
 	while (1) {
+		if (ctrl) {
+			ctrl = 0;
+			printf("Porta aberta: com%d @ %d bps\n", cport_nr + 1, bdrate);
+//			return (0);
+		}
 		n = RS232_PollComport(cport_nr, buf, 4095);
 
 		if (n > 0) {
@@ -42,7 +48,9 @@ int main() {
 				}
 			}
 
-			printf("received %i bytes: %s\n", n, (char *) buf);
+//			printf("received %i bytes: %s\n", n, (char *) buf);
+			printf("received %i bytes: %s\n", n, buf);
+//			return 0;
 		}
 
 #ifdef _WIN32
