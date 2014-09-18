@@ -34,7 +34,7 @@ RS232.exe: $(OBJS) $(USER_OBJS)
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) RS232.exe
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) RS232.exe
 	-@echo ' '
 
 .PHONY: all clean dependents

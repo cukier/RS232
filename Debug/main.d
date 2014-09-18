@@ -1,3 +1,3 @@
-main.d main.o: ../main.c ../rs232.h
+main.d: ../main.c ../rs232.h
 
 ../rs232.h:
