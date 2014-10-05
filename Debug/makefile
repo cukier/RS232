@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include src/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -22,19 +23,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: RS232.exe
+all: RS232
 
 # Tool invocations
-RS232.exe: $(OBJS) $(USER_OBJS)
+RS232: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
-	@echo 'Invoking: Cygwin C Linker'
-	gcc  -o "RS232.exe" $(OBJS) $(USER_OBJS) $(LIBS)
+	@echo 'Invoking: Cross GCC Linker'
+	arm-linux-gnueabihf-gcc  -o "RS232" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) RS232.exe
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) RS232
 	-@echo ' '
 
 .PHONY: all clean dependents

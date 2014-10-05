@@ -18,14 +18,14 @@
 #include "rs232.h"
 
 int main() {
-	int i, n, cport_nr = 0, /* /dev/ttyS0 (COM1 on windows) */
+	int i, n, cport_nr = 99, /* /dev/ttyS0 (COM1 on windows) */
 	bdrate = 1200; /* 9600 baud */
 	short ctrl = 1;
 
 	unsigned char buf[4096];
 
 	if (RS232_OpenComport(cport_nr, bdrate)) {
-		printf("Can not open comport\n");
+		printf("Can not open comport %d\n", cport_nr);
 
 		return (0);
 	}
